@@ -18,4 +18,5 @@ dependencies {
     testImplementation 'org.mockito:mockito-all:1.9.5'
     implementation 'jstl:jstl:1.2'
     implementation 'ch.qos.logback:logback-classic:1.2.3'
+    implementation 'org.hibernate.validator:hibernate-validator:6.1.0.Final'
 }

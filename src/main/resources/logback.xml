@@ -1,15 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
+    <appender name="SAVE-TO-FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>/home/afif/Desktop/logs/app.log</file>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <Pattern>%d{dd-MM-yyyy HH:mm:ss.SSS} [%thread] %-5level %logger{36}.%M - %msg%n</Pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <fileNamePattern>/home/afif/logs/app_%i.log</fileNamePattern>
+            <minIndex>1</minIndex>
+            <maxIndex>20</maxIndex>
+        </rollingPolicy>
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <maxFileSize>5KB</maxFileSize>
+        </triggeringPolicy>
+    </appender>
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <pattern>
-                %d{dd-MM-yyyy HH:mm:ss.SSS}
-                %yellow+([%thread]) %highlight(%-5level)
-                %logger{36}.%M - %msg%n
-            </pattern>
+            <pattern>%d{dd-MM-yyyy HH:mm:ss.SSS} %magenta([%thread]) %highlight(%-5level) %logger{36}.%M - %msg%n</pattern>
         </encoder>
     </appender>
     <root level="debug">
+        <appender-ref ref="SAVE-TO-FILE" />
         <appender-ref ref="STDOUT" />
     </root>
 </configuration>
