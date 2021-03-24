@@ -1,4 +1,4 @@
-package me.afifaniks.shoppingcart;
+package me.afifaniks.shoppingcart.service;
 
 import me.afifaniks.shoppingcart.domain.User;
 import me.afifaniks.shoppingcart.dto.UserDTO;

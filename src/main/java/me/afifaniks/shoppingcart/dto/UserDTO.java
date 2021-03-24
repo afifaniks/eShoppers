@@ -89,4 +89,16 @@ public class UserDTO {
     public void setLastName(@NotEmpty @Size(min = 4, max = 32) String lastName) {
         this.lastName = lastName;
     }
+
+    @Override
+    public String toString() {
+        return "UserDTO{" +
+                "username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", passwordConfirmed='" + passwordConfirmed + '\'' +
+                ", email='" + email + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                '}';
+    }
 }

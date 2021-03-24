@@ -13,7 +13,11 @@ public class UserRepositoryImpl implements UserRepository{
     @Override
     public void save(User user) {
         USERS.add(user);
-        LOGGER.info("User Saved. Total: {}", USERS.size()
-        );
+        LOGGER.info("User Saved. Total: {}", USERS.size());
+
+        for (User u:
+             USERS) {
+            LOGGER.info(u.toString());
+        };
     }
 }
