@@ -3,7 +3,7 @@ plugins {
     id 'war'
 }
 
-group 'com.bazlur.shopping-cart'
+group 'me.afifaniks.shopping-cart'
 version '1.0-SNAPSHOT'
 
 sourceCompatibility = 11
@@ -17,4 +17,5 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
     testImplementation 'org.mockito:mockito-all:1.9.5'
     implementation 'jstl:jstl:1.2'
+    implementation 'ch.qos.logback:logback-classic:1.2.3'
 }
