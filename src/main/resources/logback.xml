@@ -8,10 +8,10 @@
         <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
             <fileNamePattern>C:\Users\USER\Desktop\shopping-cart-starter-master\src\main\resources\logs\app_%i.log</fileNamePattern>
             <minIndex>1</minIndex>
-            <maxIndex>20</maxIndex>
+            <maxIndex>5</maxIndex>
         </rollingPolicy>
         <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
-            <maxFileSize>5KB</maxFileSize>
+            <maxFileSize>10KB</maxFileSize>
         </triggeringPolicy>
     </appender>
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">

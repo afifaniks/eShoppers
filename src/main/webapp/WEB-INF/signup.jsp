@@ -16,14 +16,14 @@
     <form role="form" action="<c:url value="/signup"/>" method="POST">
         <div class="form-group">
             <label for="username">Username</label>
-            <input type="text" class="form-control" id="username" name="username" placeholder="" required minlength="4" maxlength="32"/>
+            <input type="text" class="form-control" id="username" value="${user.username}" name="username" placeholder="" required minlength="4" maxlength="32"/>
             <c:if test="${errors.username != null}">
                 <small class="text-danger">${errors.username}</small>
             </c:if>
         </div>
         <div class="form-group">
             <label for="email">Email</label>
-            <input type="email" class="form-control" id="email" name="email" placeholder="you@example.com" required minlength="5" maxlength="70"/>
+            <input type="email" class="form-control" id="email" name="email" value="${user.email}" placeholder="you@example.com" required minlength="5" maxlength="70"/>
             <c:if test="${errors.email != null}">
                 <small class="text-danger">${errors.email}</small>
             </c:if>
@@ -41,14 +41,14 @@
         </div>
         <div class="form-group">
             <label for="firstName">First Name</label>
-            <input type="text" class="form-control" id="firstName" name="firstName" placeholder="" required minlength="4" maxlength="32"/>
+            <input type="text" class="form-control" id="firstName" name="firstName"  value="${user.firstName}" placeholder="" required minlength="4" maxlength="32"/>
             <c:if test="${errors.firstName != null}">
                 <small class="text-danger">${errors.firstName}</small>
             </c:if>
         </div>
         <div class="form-group">
             <label for="lastName">Last Name</label>
-            <input type="text" class="form-control" id="lastName" name="lastName" placeholder=""/>
+            <input type="text" class="form-control" id="lastName" value="${user.lastName}" name="lastName" placeholder=""/>
             <c:if test="${errors.lastName != null}">
                 <small class="text-danger">${errors.lastName}</small>
             </c:if>
