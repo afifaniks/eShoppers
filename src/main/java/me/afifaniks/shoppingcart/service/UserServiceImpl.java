@@ -1,15 +1,21 @@
 package me.afifaniks.shoppingcart.service;
 
 import me.afifaniks.shoppingcart.domain.User;
+import me.afifaniks.shoppingcart.dto.LoginDTO;
 import me.afifaniks.shoppingcart.dto.UserDTO;
 import me.afifaniks.shoppingcart.repository.UserRepository;
 import me.afifaniks.shoppingcart.service.UserService;
+import me.afifaniks.shoppingcart.util.UserNotFoundException;
+import me.afifaniks.shoppingcart.web.HomeServlet;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class UserServiceImpl implements UserService {
+    private static final Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
     private UserRepository userRepository;
 
     public UserServiceImpl(UserRepository userRepository) {
@@ -62,5 +68,20 @@ public class UserServiceImpl implements UserService {
         }
 
         return hexString.toString();
+    }
+
+    @Override
+    public User verifyUser(LoginDTO loginDTO) throws UserNotFoundException {
+        var user = userRepository.findByUsername(loginDTO.getUsername()).orElseThrow(
+                () -> new UserNotFoundException("User not found")
+        );
+
+        var encrypted = encryptPassword(loginDTO.getPassword());
+
+        if (encrypted.equals(user.getPassword())) {
+            return user;
+        }
+
+        throw new UserNotFoundException("User not found");
     }
 }

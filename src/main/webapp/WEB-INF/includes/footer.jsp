@@ -6,9 +6,9 @@
   Time      :     11:57 PM
 --%>
 
-<footer class="card-footer mt-auto py-3">
+<footer class="card-footer mt-auto py-2 fixed-bottom">
     <div class="container">
-        <span class="text-muted ml-auto">
+        <span class="text-muted align-content-center text-sm-center">
             Copyright &copy; Afif, 2020
         </span>
     </div>

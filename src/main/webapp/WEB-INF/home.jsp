@@ -11,6 +11,9 @@
 <%@include file="includes/navigation.jsp"%>
 <div class="container">
     <div class="jumbotron m-1">
+        <c:if test="${sessionScope.user != null}">
+            <h2>Hello, <c:out value="${sessionScope.user.firstName}"/>!</h2>
+        </c:if>
         <h1>The eShoppers welcomes you!</h1>
         <img src="<c:url value="/image/cart.png"/>" style="height: 200px" class="mt-2" alt="eShoppers"/>
     </div>
