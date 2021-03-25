@@ -53,7 +53,7 @@ public class SignupServlet extends HttpServlet {
         if (errors.isEmpty()) {
             LOGGER.info("User is valid. Saving..");
             userService.saveUser(userDTO);
-            resp.sendRedirect("/home");
+            resp.sendRedirect("/login");
         } else {
             LOGGER.info("Invalid user data. Saving.. {}", userDTO);
             req.setAttribute("errors", errors);

@@ -66,6 +66,7 @@ public class LoginServlet extends HttpServlet {
         } catch (UserNotFoundException exception) {
             LOGGER.error("User not found");
             req.setAttribute("user", loginDTO);
+            req.setAttribute("notFound", "User not found!");
             req.getRequestDispatcher("/WEB-INF/login.jsp").forward(req, resp);
         }
     }

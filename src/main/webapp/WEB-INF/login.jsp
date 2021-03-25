@@ -28,10 +28,16 @@
                 <small class="text-danger">${errors.password}</small>
             </c:if>
         </div>
+        <c:if test="${notFound != null}">
+            <small class="text-danger">${notFound}</small>
+        </c:if>
         <hr class="mb-4">
         <div class="form-group">
             <button class="btn btn-primary btn-lg btn" type="submit">Login</button>
         </div>
     </form>
+    <span>
+        Don't have an account? <a class="btn-link" href="<c:url value="signup.jsp/"/>">Sign Up here</a>
+    </span>
 </div>
 <%@include file="includes/footer.jsp"%>
