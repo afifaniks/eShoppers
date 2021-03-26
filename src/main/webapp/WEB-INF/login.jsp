@@ -10,9 +10,15 @@
 
 <div class="container">
     <br>
+    <div class="row">
+        <c:if test="${message != null}">
+            <div class="alert alert-success block">
+                    ${message}
+            </div>
+        </c:if>
+    </div>
     <h2>Login</h2>
     <hr class="mb-4">
-
     <form role="form" action="<c:url value="/login"/>" method="POST">
         <div class="form-group">
             <label for="username">Username</label>
@@ -37,7 +43,7 @@
         </div>
     </form>
     <span>
-        Don't have an account? <a class="btn-link" href="<c:url value="signup.jsp/"/>">Sign Up here</a>
+        Don't have an account? <a class="btn-link" href="<c:url value="/signup"/>">Sign Up here</a>
     </span>
 </div>
 <%@include file="includes/footer.jsp"%>

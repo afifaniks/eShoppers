@@ -41,7 +41,7 @@ public class UserServiceImpl implements UserService {
         return userRepository.findByUsername(userDTO.getUsername()).isPresent();
     }
 
-    private String encryptPassword(String password) {
+    public String encryptPassword(String password) {
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
             byte[] bytes = digest.digest(

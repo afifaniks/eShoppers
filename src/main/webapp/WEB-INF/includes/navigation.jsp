@@ -1,3 +1,4 @@
+<%@taglib prefix="fun" uri="https://afifaniks.me/functions" %>
 <%--
   Created by IntelliJ IDEA.
   Author    :     Afif Al Mamun
@@ -18,6 +19,25 @@
             <li class="nav-item">
                 <a class="nav-link" href="#">About</a>
             </li>
+            <c:choose>
+                <c:when test="${fun:isAuthenticated(pageContext.request)}">
+                    <a class="nav-link" href="#" onclick="logOut()">
+                        Logout (${fun:getCurrentUser(pageContext.request).firstName})
+                    </a>
+                    <script>
+                        function logOut() {
+                            document.getElementById("logoutForm").submit();
+                        }
+                    </script>
+                    <form style="visibility: hidden" id="logoutForm" method="POST" action="<c:url value="/logout" />">
+                    </form>
+                </c:when>
+                <c:otherwise>
+                    <a class="nav-link" href="<c:url value="/login"/>">
+                        Login
+                    </a>
+                </c:otherwise>
+            </c:choose>
         </ul>
     </div>
 </nav>

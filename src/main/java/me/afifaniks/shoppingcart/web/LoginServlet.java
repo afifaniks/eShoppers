@@ -36,6 +36,13 @@ public class LoginServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         LOGGER.info("Serving Login page");
 
+        // Checking if the user has been redirected after logging out
+        String logOut = req.getParameter("logout");
+
+        if (logOut != null && logOut.equals("true")) {
+            req.setAttribute("message", "You have been logged out!");
+        }
+
         req.getRequestDispatcher("/WEB-INF/login.jsp").forward(req, resp);
     }
 

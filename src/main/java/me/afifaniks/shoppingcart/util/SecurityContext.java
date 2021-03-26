@@ -46,8 +46,7 @@ public class SecurityContext {
         HttpSession session = request.getSession(true);
         boolean authenticated = session.getAttribute(AUTHENTICATION_KEY) != null;
 
-        LOGGER.info("Authentication {}", authenticated);
-
+        LOGGER.info("Authentication: {}", authenticated);
 
         return authenticated;
     }
