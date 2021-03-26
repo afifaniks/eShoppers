@@ -10,23 +10,20 @@ package me.afifaniks.shoppingcart.web;
 
 import me.afifaniks.shoppingcart.domain.User;
 import me.afifaniks.shoppingcart.dto.LoginDTO;
-import me.afifaniks.shoppingcart.dto.UserDTO;
 import me.afifaniks.shoppingcart.repository.UserRepositoryImpl;
 import me.afifaniks.shoppingcart.service.UserService;
 import me.afifaniks.shoppingcart.service.UserServiceImpl;
+import me.afifaniks.shoppingcart.util.SecurityContext;
 import me.afifaniks.shoppingcart.util.UserNotFoundException;
 import me.afifaniks.shoppingcart.util.ValidationUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.Map;
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
@@ -74,15 +71,6 @@ public class LoginServlet extends HttpServlet {
     private void login(LoginDTO loginDTO, HttpServletRequest req) throws UserNotFoundException {
         User user = userService.verifyUser(loginDTO);
 
-        // Invalidate old session
-        HttpSession oldSession = req.getSession(false);
-
-        if (oldSession != null) {
-            oldSession.invalidate();
-        }
-
-        // Put user in session
-        HttpSession httpSession = req.getSession(true);
-        httpSession.setAttribute("user", user);
+        SecurityContext.login(req, user);
     }
 }

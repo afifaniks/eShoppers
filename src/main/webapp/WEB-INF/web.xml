@@ -15,4 +15,14 @@
         <exception-type>java.lang.Throwable</exception-type>
         <location>/WEB-INF/error.jsp</location>
     </error-page>
+    <jsp-config>
+        <taglib>
+            <taglib-uri>
+                https://afifaniks.me/functions
+            </taglib-uri>
+            <taglib-location>
+                /WEB-INF/tags/functions.tld
+            </taglib-location>
+        </taglib>
+    </jsp-config>
 </web-app>

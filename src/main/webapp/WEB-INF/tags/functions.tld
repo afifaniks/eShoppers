@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee" version="2.0">
+    <tlib-version>1.0</tlib-version>
+    <short-name>In</short-name>
+    <uri>https://afifaniks.me/functions</uri>
+    <function>
+        <name>getCurrentUser</name>
+        <function-class>
+            me.afifaniks.shoppingcart.util.SecurityContext
+        </function-class>
+        <function-signature>
+            me.afifaniks.shoppingcart.domain.User getCurrentUser(javax.servlet.http.HttpServletRequest)
+        </function-signature>
+    </function>
+    <function>
+        <name>isAuthenticated</name>
+        <function-class>
+            me.afifaniks.shoppingcart.util.SecurityContext
+        </function-class>
+        <function-signature>
+            boolean isAuthenticated(javax.servlet.http.HttpServletRequest)
+        </function-signature>
+    </function>
+</taglib>

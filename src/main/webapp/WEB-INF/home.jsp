@@ -1,4 +1,5 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fun" uri="https://afifaniks.me/functions" %>
 <%--
   Created by IntelliJ IDEA.
   Author    :     Afif Al Mamun
@@ -11,8 +12,8 @@
 <%@include file="includes/navigation.jsp"%>
 <div class="container">
     <div class="jumbotron m-1">
-        <c:if test="${sessionScope.user != null}">
-            <h2>Hello, <c:out value="${sessionScope.user.firstName}"/>!</h2>
+        <c:if test="${fun:isAuthenticated(pageContext.request)}">
+            <h2>Hello, <c:out value="${fun:getCurrentUser(pageContext.request).firstName}"/>!</h2>
         </c:if>
         <h1>The eShoppers welcomes you!</h1>
         <img src="<c:url value="/image/cart.png"/>" style="height: 200px" class="mt-2" alt="eShoppers"/>
