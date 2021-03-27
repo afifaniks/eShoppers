@@ -9,7 +9,7 @@
 package me.afifaniks.shoppingcart.web;
 
 import me.afifaniks.shoppingcart.dto.ProductDTO;
-import me.afifaniks.shoppingcart.repository.DummyProductRepositoryImpl;
+import me.afifaniks.shoppingcart.repository.ProductRepositoryImpl;
 import me.afifaniks.shoppingcart.service.ProductService;
 import me.afifaniks.shoppingcart.service.ProductServiceImpl;
 import org.slf4j.Logger;
@@ -27,15 +27,14 @@ import java.util.List;
 public class HomeServlet extends HttpServlet {
     private static final Logger LOGGER = LoggerFactory.getLogger(HomeServlet.class);
     private ProductService productService
-            = new ProductServiceImpl(
-                    new DummyProductRepositoryImpl());
+            = new ProductServiceImpl(new ProductRepositoryImpl());
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         LOGGER.info("Serving home page");
 
         List<ProductDTO> allProducts =
-                productService.findAllProductsByName();
+                productService.findAllProductsSortedByName();
 
         req.setAttribute("products", allProducts);
 

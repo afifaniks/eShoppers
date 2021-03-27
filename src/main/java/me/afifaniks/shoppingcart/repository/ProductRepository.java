@@ -8,10 +8,12 @@
 
 package me.afifaniks.shoppingcart.repository;
 
-import me.afifaniks.shoppingcart.dto.ProductDTO;
+import me.afifaniks.shoppingcart.domain.Product;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ProductRepository {
-    List<ProductDTO> findAllProducts();
+    List<Product> findAllProducts();
+    Optional<Product> findById(Long id);
 }

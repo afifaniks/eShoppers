@@ -36,13 +36,25 @@
                             <c:out value="${product.getPrice()}"/>
                             $
                         </p>
-                        <a class="card-link btn btn-outline-info">
+                        <a class="card-link btn btn-outline-info"
+                        onclick="addToCart(${product.id})">
                             Add to Cart
                         </a>
+                        <form style="visibility: hidden"
+                              method="post"
+                              id="addToCart_${product.id}"
+                              action="<c:url value="/add-to-cart?productId=${product.id}"/>">
+                        </form>
                     </div>
                 </div>
             </div>
         </c:forEach>
     </div>
 </div>
+<script>
+    function addToCart(productId) {
+        let form = document.getElementById("addToCart_" + productId);
+        form.submit();
+    }
+</script>
 <%@include file="includes/footer.jsp"%>

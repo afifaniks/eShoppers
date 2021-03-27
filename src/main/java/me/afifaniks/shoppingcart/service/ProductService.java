@@ -8,10 +8,12 @@
 
 package me.afifaniks.shoppingcart.service;
 
+import me.afifaniks.shoppingcart.domain.Cart;
+import me.afifaniks.shoppingcart.domain.Product;
 import me.afifaniks.shoppingcart.dto.ProductDTO;
 
 import java.util.List;
 
 public interface ProductService {
-    List<ProductDTO> findAllProductsByName();
+    List<ProductDTO> findAllProductsSortedByName();
 }

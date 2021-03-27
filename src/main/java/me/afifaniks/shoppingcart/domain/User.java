@@ -1,5 +1,7 @@
 package me.afifaniks.shoppingcart.domain;
 
+import java.util.Objects;
+
 public class User {
     private String username;
     private String password;
@@ -67,5 +69,18 @@ public class User {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 '}';
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(username);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return username.equals(user.username);
     }
 }

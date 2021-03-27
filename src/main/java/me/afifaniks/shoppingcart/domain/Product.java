@@ -2,28 +2,28 @@
  * Created by IntelliJ IDEA.
  * Author    :     Afif Al Mamun
  * Web       :     https://afifaniks.me
- * Date      :     3/23/2021
- * Time      :     5:14 PM
+ * Date      :     3/26/2021
+ * Time      :     5:40 PM
  **/
 
-package me.afifaniks.shoppingcart.dto;
+package me.afifaniks.shoppingcart.domain;
 
 import java.math.BigDecimal;
 
-public class ProductDTO {
+public class Product {
     private Long id;
     private String name;
     private String description;
     private BigDecimal price;
 
-    public ProductDTO() {
-    }
-
-    public ProductDTO(Long id, String name, String description, BigDecimal price) {
+    public Product(Long id, String name, String description, BigDecimal price) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
+    }
+
+    public Product() {
     }
 
     public Long getId() {

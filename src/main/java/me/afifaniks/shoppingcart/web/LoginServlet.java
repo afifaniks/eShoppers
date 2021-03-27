@@ -40,7 +40,7 @@ public class LoginServlet extends HttpServlet {
         String logOut = req.getParameter("logout");
 
         if (logOut != null && logOut.equals("true")) {
-            req.setAttribute("message", "You have been logged out!");
+            req.setAttribute("message", "You have been logged out of the system successfully");
         }
 
         req.getRequestDispatcher("/WEB-INF/login.jsp").forward(req, resp);

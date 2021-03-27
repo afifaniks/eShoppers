@@ -8,6 +8,8 @@
 
 package me.afifaniks.shoppingcart.service;
 
+import me.afifaniks.shoppingcart.domain.Cart;
+import me.afifaniks.shoppingcart.domain.Product;
 import me.afifaniks.shoppingcart.dto.ProductDTO;
 import me.afifaniks.shoppingcart.repository.ProductRepository;
 
@@ -23,10 +25,20 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<ProductDTO> findAllProductsByName() {
+    public List<ProductDTO> findAllProductsSortedByName() {
         return productRepository.findAllProducts()
                 .stream()
+                .map(this::converToDTO)
                 .sorted(Comparator.comparing(ProductDTO::getName))
                 .collect(Collectors.toList());
+    }
+
+    private ProductDTO converToDTO(Product product) {
+        return new me.afifaniks.shoppingcart.dto.ProductDTO(
+                product.getId(),
+                product.getName(),
+                product.getDescription(),
+                product.getPrice()
+        );
     }
 }
