@@ -29,7 +29,7 @@
         </div>
         <div class="form-group">
             <label for="password">Password</label>
-            <input type="password" class="form-control" id="password" name="password" required minlength="6" maxlength="20"/>
+            <input type="password" class="form-control" id="password" name="password" value="111111" required minlength="6" maxlength="20"/>
             <c:if test="${errors.password != null}">
                 <small class="text-danger">${errors.password}</small>
             </c:if>

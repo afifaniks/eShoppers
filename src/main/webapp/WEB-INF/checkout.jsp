@@ -64,7 +64,7 @@
                     </a>
                 </td>
                 <td>
-                    <a href="<c:url value="#"/>" class="btn btn-success text-right">
+                    <a href="<c:url value="/order"/>" class="btn btn-success text-right">
                         Proceed To Checkout
                     </a>
                 </td>
