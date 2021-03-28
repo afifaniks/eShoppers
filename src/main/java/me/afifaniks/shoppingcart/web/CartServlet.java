@@ -40,7 +40,7 @@ public class CartServlet extends HttpServlet {
         LOGGER.info("Request to add item to cart. Id: {}", productId);
 
         var cart = getCart(req);
-        addProductToCart(productId, cart);
+        cartService.addProductToCart(productId, cart);
 
         resp.sendRedirect("/home");
     }

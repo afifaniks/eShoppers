@@ -12,11 +12,41 @@
 <%@include file="includes/navigation.jsp"%>
 <div class="container">
     <div class="jumbotron m-1">
-        <c:if test="${fun:isAuthenticated(pageContext.request)}">
-            <h2>Hello, <c:out value="${fun:getCurrentUser(pageContext.request).firstName}"/>!</h2>
-        </c:if>
-        <h1>The eShoppers welcomes you!</h1>
-        <img src="<c:url value="/image/cart.png"/>" style="height: 200px" class="mt-2" alt="eShoppers"/>
+        <div class="row">
+            <div class="col-6">
+                <c:if test="${fun:isAuthenticated(pageContext.request)}">
+                    <h2>Hello, <c:out value="${fun:getCurrentUser(pageContext.request).firstName}"/>!</h2>
+                </c:if>
+                <h1>The eShoppers welcomes you!</h1>
+                <img src="<c:url value="/image/cart.png"/>" style="height: 200px" class="mt-2" alt="eShoppers"/>
+            </div>
+            <div class="col-6 mb-4">
+                <c:if test="${cart != null && cart.cartItems.size() >0}">
+                    <div class="card shadow-sm p-3 mb-5, bg-white">
+                        <div class="card-header">
+                            <h4>
+                                ${fun:getCurrentUser(pageContext.request).firstName}'s Cart
+                            </h4>
+                        </div>
+                        <div class="card-body">
+                            <p>Total Item:
+                                <span class="badge badge-pill badge-success">
+                                    <c:out value="${cart.totalItem}"/>
+                                </span>
+                            </p>
+                            <p>Total Price:
+                                <span class="badge badge-pill badge-success">
+                                    <c:out value="${cart.totalPrice}"/>
+                                </span>
+                            </p>
+                            <p>
+                                <a href="#" class="btn btn-outline-info">Checkout</a>
+                            </p>
+                        </div>
+                    </div>
+                </c:if>
+            </div>
+        </div>
     </div>
 </div>
 <div class="container">

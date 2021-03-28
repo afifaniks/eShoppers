@@ -61,6 +61,9 @@ public class CartServiceImpl implements CartService{
         Integer totalItem = getTotalItem(cart);
         BigDecimal totalPrice = calculateTotalPrice(cart);
 
+        cart.setTotalItem(totalItem);
+        cart.setTotalPrice(totalPrice);
+
         cartRepository.save(cart);
     }
 

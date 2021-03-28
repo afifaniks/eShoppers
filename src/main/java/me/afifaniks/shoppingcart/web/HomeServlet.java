@@ -8,10 +8,16 @@
 
 package me.afifaniks.shoppingcart.web;
 
+import me.afifaniks.shoppingcart.domain.Cart;
 import me.afifaniks.shoppingcart.dto.ProductDTO;
+import me.afifaniks.shoppingcart.repository.CartItemRepositoryImpl;
+import me.afifaniks.shoppingcart.repository.CartRepositoryImpl;
 import me.afifaniks.shoppingcart.repository.ProductRepositoryImpl;
+import me.afifaniks.shoppingcart.service.CartService;
+import me.afifaniks.shoppingcart.service.CartServiceImpl;
 import me.afifaniks.shoppingcart.service.ProductService;
 import me.afifaniks.shoppingcart.service.ProductServiceImpl;
+import me.afifaniks.shoppingcart.util.SecurityContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -28,6 +34,12 @@ public class HomeServlet extends HttpServlet {
     private static final Logger LOGGER = LoggerFactory.getLogger(HomeServlet.class);
     private ProductService productService
             = new ProductServiceImpl(new ProductRepositoryImpl());
+    private CartService cartService =
+            new CartServiceImpl(
+                    new CartRepositoryImpl(),
+                    new ProductRepositoryImpl(),
+                    new CartItemRepositoryImpl()
+            );
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -39,6 +51,14 @@ public class HomeServlet extends HttpServlet {
         req.setAttribute("products", allProducts);
 
         LOGGER.info("Total Products: {}", allProducts.size());
+
+//        Cart cart = cartService.getCartByUser(SecurityContext.getCurrentUser(req));
+
+        if (SecurityContext.isAuthenticated(req)) {
+            var currentUser = SecurityContext.getCurrentUser(req);
+            var cart1 = cartService.getCartByUser(currentUser);
+            req.setAttribute("cart", cart1);
+        }
 
         req.getRequestDispatcher("/WEB-INF/home.jsp")
                 .forward(req, resp);
