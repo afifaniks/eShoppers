@@ -35,12 +35,14 @@
                                 </span>
                             </p>
                             <p>Total Price:
-                                <span class="badge badge-pill badge-success">
-                                    <c:out value="${cart.totalPrice}"/>
+                                <span>
+                                    <b>
+                                        <c:out value="${cart.totalPrice}"/> $
+                                    </b>
                                 </span>
                             </p>
                             <p>
-                                <a href="#" class="btn btn-outline-info">Checkout</a>
+                                <a href="<c:url value="/checkout"/>" class="btn btn-outline-info">Checkout</a>
                             </p>
                         </div>
                     </div>

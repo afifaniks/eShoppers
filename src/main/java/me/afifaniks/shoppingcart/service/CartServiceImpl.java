@@ -47,14 +47,7 @@ public class CartServiceImpl implements CartService{
 
     @Override
     public void addProductToCart(String productId, Cart cart) {
-        if (productId == null || productId.length() == 0)
-            throw new IllegalArgumentException("Product id can not be null");
-
-        Long id = parseProductId(productId);
-
-        var product = productRepository.findById(id).orElseThrow(
-                () -> new RuntimeException("Product Not Found. ID " + id)
-        );
+        Product product = findProductById(productId);
 
         addProductToCart(product, cart);
 
@@ -65,6 +58,48 @@ public class CartServiceImpl implements CartService{
         cart.setTotalPrice(totalPrice);
 
         cartRepository.save(cart);
+    }
+
+    private Product findProductById(String productId) {
+        if (productId == null || productId.length() == 0)
+            throw new IllegalArgumentException("Product id can not be null");
+
+        Long id = parseProductId(productId);
+
+        var product = productRepository.findById(id).orElseThrow(
+                () -> new RuntimeException("Product Not Found. ID " + id)
+        );
+
+        return product;
+    }
+
+    @Override
+    public void removeProductFromCart(String productId, Cart cart) {
+        Product product = findProductById(productId);
+
+        removeProductFromCart(product, cart);
+
+    }
+
+    private void removeProductFromCart(Product product, Cart cart) {
+        var itemOPtional = cart.getCartItems()
+                .stream()
+                .filter(cartItem -> cartItem.getProduct().equals(product))
+                .findAny();
+
+        var cartItem = itemOPtional.orElseThrow(
+                () -> new RuntimeException("Cart Item Not Found! Product: " + product)
+        );
+
+        if (cartItem.getQty() > 1) {
+            cartItem.setQty(cartItem.getQty() - 1);
+            cartItem.setPrice(cartItem.getPrice().subtract(product.getPrice()));
+            cart.getCartItems().add(cartItem);
+            cartItemRepository.update(cartItem);
+        } else {
+            cart.getCartItems().remove(cartItem);
+            cartItemRepository.remove(cartItem);
+        }
     }
 
     private BigDecimal calculateTotalPrice(Cart cart) {

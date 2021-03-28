@@ -21,31 +21,31 @@ public class ProductRepositoryImpl implements ProductRepository {
                     1L,
                     "Apple iPad",
                     "iPad 10 GB",
-                    BigDecimal.valueOf(34324432.22)
+                    BigDecimal.valueOf(500.00)
             ),
             new Product(
                     2L,
                     "JBM Box",
                     "JBM Speakers",
-                    BigDecimal.valueOf(2432.22)
+                    BigDecimal.valueOf(20.22)
             ),
             new Product(
                     3L,
                     "Apple Airpod",
                     "Airpod mini",
-                    BigDecimal.valueOf(432.22)
+                    BigDecimal.valueOf(50.69)
             ),
             new Product(
                     4L,
                     "Razer Kraken",
                     "Best Mouse at Worst Price",
-                    BigDecimal.valueOf(8981.00)
+                    BigDecimal.valueOf(70.00)
             ),
             new Product(
                     5L,
                     "Bloody M1 Headphones",
                     "Headphone from A4Tech",
-                    BigDecimal.valueOf(100)
+                    BigDecimal.valueOf(30)
             )
     );
 
