@@ -9,6 +9,7 @@
 package me.afifaniks.shoppingcart.repository;
 
 import me.afifaniks.shoppingcart.domain.Cart;
+import me.afifaniks.shoppingcart.domain.Order;
 import me.afifaniks.shoppingcart.domain.User;
 
 import java.util.*;
@@ -16,17 +17,39 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class CartRepositoryImpl implements CartRepository{
     private static final Map<User, Set<Cart>> CARTS = new ConcurrentHashMap<>();
+    private final OrderRepository orderRepository = new OrderRepositoryImpl();
 
     @Override
     public Optional<Cart> findByUser(User currentUser) {
-        Set<Cart> carts = CARTS.get(currentUser);
+        var usersCart = getCart(currentUser);
+        if (usersCart.isPresent()) {
+            var cart = usersCart.get();
+            var orders = orderRepository.findOrderByUser(currentUser);
 
+            if (isOrderAlreadyPlacedWith(orders, cart)) {
+
+                return Optional.empty();
+            } else {
+                return Optional.of(cart);
+            }
+        }
+        return Optional.empty();
+    }
+
+    private boolean isOrderAlreadyPlacedWith(
+            Set<Order> orderByUser, Cart cart) {
+
+        return orderByUser.stream()
+                .anyMatch(order -> order.getCart().equals(cart));
+    }
+
+    private Optional<Cart> getCart(User currentUser) {
+        var carts = CARTS.get(currentUser);
         if (carts != null && !carts.isEmpty()) {
-            Cart cart = (Cart) carts.toArray()[carts.size() - 1];
 
+            Cart cart = (Cart) carts.toArray()[carts.size() - 1];
             return Optional.of(cart);
         }
-
         return Optional.empty();
     }
 

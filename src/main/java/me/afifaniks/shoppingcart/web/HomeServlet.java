@@ -57,12 +57,10 @@ public class HomeServlet extends HttpServlet {
 
         LOGGER.info("Total Products: {}", allProducts.size());
 
-//        Cart cart = cartService.getCartByUser(SecurityContext.getCurrentUser(req));
-
         if (SecurityContext.isAuthenticated(req)) {
             var currentUser = SecurityContext.getCurrentUser(req);
-            var cart1 = cartService.getCartByUser(currentUser);
-            req.setAttribute("cart", cart1);
+            var cart = cartService.getCartByUser(currentUser);
+            req.setAttribute("cart", cart);
         }
 
         req.getRequestDispatcher("/WEB-INF/home.jsp")

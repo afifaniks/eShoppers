@@ -9,7 +9,11 @@
 package me.afifaniks.shoppingcart.repository;
 
 import me.afifaniks.shoppingcart.domain.Order;
+import me.afifaniks.shoppingcart.domain.User;
+
+import java.util.Set;
 
 public interface OrderRepository {
     Order save(Order order);
+    Set<Order> findOrderByUser(User currentUser);
 }
