@@ -45,6 +45,11 @@ public class HomeServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         LOGGER.info("Serving home page");
 
+        final String orderSuccessRedirect = req.getParameter("orderSuccess");
+        if (orderSuccessRedirect != null && Boolean.valueOf(orderSuccessRedirect)) {
+            req.setAttribute("message", "Your order has been placed successfully!");
+        }
+
         List<ProductDTO> allProducts =
                 productService.findAllProductsSortedByName();
 

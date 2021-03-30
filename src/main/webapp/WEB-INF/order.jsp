@@ -60,7 +60,7 @@
                             Address 2
                             <span class="text-muted">(Optional)</span>
                         </label>
-                        <input type="text" class="form-control" id="address2" name="address2" placeholder="Apartment or Suite" value="${shippingAddress.address2}" required>
+                        <input type="text" class="form-control" id="address2" name="address2" placeholder="Apartment or Suite" value="${shippingAddress.address2}">
                     </div>
                     <div class="row">
                         <div class="col-md-5 mb-3">

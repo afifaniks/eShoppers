@@ -11,6 +11,14 @@
 <%@include file="includes/header.jsp"%>
 <%@include file="includes/navigation.jsp"%>
 <div class="container">
+    <br>
+    <div class="row">
+        <c:if test="${message != null}">
+            <div class="alert alert-success" style="width: 100%">
+                    ${message}
+            </div>
+        </c:if>
+    </div>
     <div class="jumbotron m-1">
         <div class="row">
             <div class="col-6">
